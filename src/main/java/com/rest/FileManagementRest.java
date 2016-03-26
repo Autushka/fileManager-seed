@@ -40,7 +40,8 @@ public class FileManagementRest {
     public PresignedUrlDto generatePresignedUrlForS3( @RequestParam(value = "objectKey") String objectKey) {
         BasicAWSCredentials awsCreds = new BasicAWSCredentials(s3accessKeyId, s3SecretKey);
         AmazonS3 s3Client = new AmazonS3Client(awsCreds);
-        PresignedUrlDto presignedUrlDto = new PresignedUrlDto("");
+        PresignedUrlDto presignedUrlDto = new PresignedUrlDto();
+        presignedUrlDto.setInitialS3ObjectKey(objectKey);
         try {
                 java.util.Date expiration = new java.util.Date();
             long milliSeconds = expiration.getTime();
