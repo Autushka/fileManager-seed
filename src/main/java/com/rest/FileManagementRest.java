@@ -43,13 +43,12 @@ public class FileManagementRest {
         PresignedUrlDto presignedUrlDto = new PresignedUrlDto();
         presignedUrlDto.setInitialS3ObjectKey(objectKey);
         try {
-                java.util.Date expiration = new java.util.Date();
+            java.util.Date expiration = new java.util.Date();
             long milliSeconds = expiration.getTime();
             milliSeconds += 1000 * 60 * 60; // Add 1 hour.
             expiration.setTime(milliSeconds);
 
-            GeneratePresignedUrlRequest generatePresignedUrlRequest =
-                    new GeneratePresignedUrlRequest(s3BucketName, objectKey);
+            GeneratePresignedUrlRequest generatePresignedUrlRequest = new GeneratePresignedUrlRequest(s3BucketName, objectKey);
             generatePresignedUrlRequest.setMethod(HttpMethod.GET);
             generatePresignedUrlRequest.setExpiration(expiration);
 
